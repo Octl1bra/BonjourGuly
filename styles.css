@@ -178,6 +178,12 @@ footer {
     color: white;
 }
 
+/* 添加footer链接样式 */
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .navbar {
