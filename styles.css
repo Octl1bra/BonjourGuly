@@ -1,211 +1,407 @@
-/* 重置默认样式 */
+:root {
+    --primary-color: #007AFF;
+    --primary-hover: #0056b3;
+    --text-main: #1D1D1F;
+    --text-secondary: #86868B;
+    --bg-color: #FFFFFF;
+    --bg-secondary: #F5F5F7;
+    --card-bg: #FFFFFF;
+    --nav-height: 64px;
+    --max-width: 1200px;
+    --border-radius: 20px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+html {
+    scroll-behavior: smooth;
 }
 
-/* 导航栏样式 */
+body {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding: 1rem 5%;
-    background: rgba(255, 255, 255, 0.95);
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
+    align-items: center;
+    gap: 32px;
 }
 
 .nav-links li a {
-    color: #333;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: var(--transition);
 }
 
 .nav-links li a:hover {
-    color: #007AFF;
+    color: var(--primary-color);
 }
 
-/* 主页区域样式 */
+.nav-cta {
+    background-color: var(--text-main);
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem !important;
+    transition: var(--transition) !important;
+}
+
+.nav-cta:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding-top: var(--nav-height);
+    background: radial-gradient(circle at 50% 0%, #F0F4FF 0%, #FFFFFF 60%);
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-content {
     max-width: 800px;
-    padding: 2rem;
+    text-align: center;
+    padding: 0 24px;
+    z-index: 1;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #1D1D1F 0%, #434344 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
 }
 
-.download-btn {
+.hero .subtitle {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.hero .description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-icon {
+    height: 48px;
+    transition: var(--transition);
+}
+
+.app-store-btn {
     display: inline-block;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-    background: #007AFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: background 0.3s ease;
+    transition: var(--transition);
 }
 
-.download-btn:hover {
-    background: #0056b3;
+.app-store-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
-/* 功能区域样式 */
+.visual-circle {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(45deg, rgba(0, 122, 255, 0.05), rgba(0, 122, 255, 0.1));
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: blur(60px);
+}
+
+/* Features Section */
 .features {
-    padding: 5rem 10%;
-    background: #fff;
+    padding: 120px 0;
+    background-color: var(--bg-color);
 }
 
-.features h2 {
+.section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.section-header p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
 }
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
 }
 
 .feature-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 40px;
     text-align: center;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.feature-card img {
-    width: 200px;  /* 调整功能图标的宽度 */
-    height: auto; /* 保持图片比例 */
-    object-fit: contain; /* 确保图片完整显示 */
-    margin-bottom: 1.5rem;
-}
-/* 下载区域样式 */
-.download {
-    padding: 5rem 10%;
-    text-align: center;
-    background: #f8f9fa;
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
 }
 
-.app-store-btn img {
-    height: 60px;
-    margin-top: 2rem;
-}
-
-/* 联系我们样式 */
-.contact {
-    padding: 5rem 10%;
-    background: #fff;
-}
-
-.contact h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+.feature-image-container {
+    width: 100%;
+    margin-bottom: 24px;
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+.feature-screenshot {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
 }
 
-.contact-form textarea {
-    height: 150px;
-    resize: vertical;
+.feature-card:hover .feature-screenshot {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.contact-form button {
-    padding: 1rem;
-    background: #007AFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
-.contact-form button:hover {
-    background: #0056b3;
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
-/* 页脚样式 */
+/* Footer */
 footer {
-    text-align: center;
-    padding: 2rem;
-    background: #333;
-    color: white;
+    background-color: var(--bg-secondary);
+    padding: 80px 0 32px;
+    color: var(--text-main);
 }
 
-/* 添加footer链接样式 */
-footer a {
-    color: white;
-    text-decoration: underline;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
-/* 响应式设计 */
+.footer-logo h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.footer-logo p {
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 80px;
+}
+
+.link-group h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.link-group a {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.link-group a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 32px 24px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.beian {
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.beian:hover {
+    color: var(--text-main);
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+
+/* Responsive */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 1rem;
+    .nav-links {
+        display: none;
     }
 
-    .nav-links {
-        margin-top: 1rem;
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: var(--text-main);
+        margin: 5px 0;
     }
 
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr;
+    .footer-content {
+        flex-direction: column;
     }
-}
 
-.download-icon {
-    width: auto;
-    height: auto;
-    vertical-align: middle;
+    .footer-links {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
 }
